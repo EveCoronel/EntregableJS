@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "Parisienne";
+    src: url(Parisienne/Parisienne-Regular.ttf);
+}
+
+body {
+    background-image: linear-gradient(#ee9ca7, #ffdde1);
+    align-items: center;
+    justify-items: center;
+    font-size: 2rem;
+}
+
+h1 {
+    font-family: "Parisienne";
+    font-size: 4rem;
+}
+
+.boton {
+    background-image: linear-gradient(#FFC75F, #FF9671);
+    margin: 5%;
+    border-radius: 5px;
+    padding: 15px;
+    text-decoration: none;
+    border: black 5px solid;
+}
+
+a {
+    display: flex;
+    text-decoration: none;
+    text-align: center;
+}
+
+article {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+article img {
+border: 5px solid white;
+margin: 5%;
+padding: 3%;
+}
+
+section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    margin: 3%;
+ 
+}
+
+
+
+/*
+Grid Area
+*/
+
+section {
+    grid-area: titulo;
+}
+
+article {
+    grid-area: galeria;
+}
+
+div {
+    grid-area: pedidos
+}
+
+footer {
+    grid-area: pie;
+}
+body {
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    grid-template-areas:
+        "titulo"
+        "galeria"
+        "pedidos"
+        "pie"
+    ;
+    grid-template-rows: 12% 45% 20% auto;
+    grid-row-gap: 2%;
+}
