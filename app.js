@@ -17,8 +17,9 @@ let finalizar = "0"
 
 class Pedido {
 
-    constructor(sabor, relleno, peso, topping) {
+    constructor(numero, sabor, relleno, peso, topping) {
 
+        this.numero = numero
         this.sabor = sabor
         this.relleno = relleno
         this.peso = peso
@@ -41,18 +42,40 @@ function invalido() {
     alert("Ingreso inválido")
 }
 
+
+let sabores = [{
+        nombre: "chocolate",
+        precio: 200
+    },
+    {
+        nombre: "marmolado",
+        precio: 210
+    },
+    {
+        nombre: "limon",
+        precio: 220
+    },
+    {
+        nombre: "vainilla",
+        precio: 190
+    }
+]
+
 hacerPedido()
 
+
 function hacerPedido() {
-    sabor = prompt('Ingresa el sabor de bizcochuelo que deseas\n Chocolate\n Marmolado\n Limon\n Vainilla\n').toLowerCase();
+
+    let sabor = prompt('Ingresa el sabor de bizcochuelo que deseas\n Chocolate\n Marmolado\n Limon\n Vainilla\n').toLowerCase();
 
     while (accion) {
 
         if ((sabor == "chocolate") || (sabor == "marmolado") || (sabor == "limon") || (sabor == "vainilla")) {
+
             continuar()
             break
-        }
 
+        }
 
         sabor = prompt('Dato inválido. Ingresa el sabor de bizcochuelo que deseas\n Chocolate\n Marmolado\n Limon\n Vainilla\n').toLowerCase();
 
@@ -85,7 +108,7 @@ function hacerPedido() {
         invalido()
         peso = prompt('Ingresa los kilos que deseas\n 1kg // Dos personas\n 3kg // Seis personas\n 5kg// Diez personas\n 7kg // Catorce personas\n').toLowerCase();
 
-       
+
     }
 
     topping = prompt('Ingresa el topping que desees\n Oreos\n Dulce de leche\n Fruta\n Merengue\n').toLowerCase();
@@ -98,33 +121,50 @@ function hacerPedido() {
         invalido()
         topping = prompt('Ingresa el topping que desees\n Oreos\n Dulce de leche\n Fruta\n Merengue\n').toLowerCase();
 
-       
+
     }
+
+    numero = prompt('Ingresa tu numero de teléfono');
 
 
     alert('Su postre será de ' + sabor + ' relleno de ' + relleno + ' con decoración ' + topping + ' y pesará ' + peso)
 
+
     finalizar = prompt('Ingrese 1. Para confirmar la orden \n 2. Para confirmar y realizar otro pedido \n 3. Para salir.').toLowerCase();
 
+    while (accion) {
+        if (finalizar == "1") {
+            accion == true
 
-    if (finalizar == "1") {
-        accion == true
+            pedidos.push(new Pedido(numero, sabor, relleno, peso, topping));
+            break
 
-        pedidos.push(new Pedido(sabor, relleno, peso, topping));
+        } else if (finalizar == "2") {
+            accion == true
 
+            pedidos.push(new Pedido(numero, sabor, relleno, peso, topping));
 
-    } else if (finalizar == "2") {
-        accion == true
+            hacerPedido()
+            break
+        } else if (finalizar == '3') {
+            accion == false
+            break
+        }
 
-        pedidos.push(new Pedido(sabor, relleno, peso, topping));
+        invalido()
+        finalizar = prompt('Ingrese 1. Para confirmar la orden \n 2. Para confirmar y realizar otro pedido \n 3. Para salir.').toLowerCase();
 
-        hacerPedido()
-
-    } else if (finalizar == '3') {
-        accion == false
     }
+
 }
+    console.log(Pedido)
+    console.log(pedidos)
 
+    let numeroIngresado = prompt('Busca tu pedido con tu número de teléfono')
 
-console.log(Pedido)
-console.log(pedidos)
+    const encontrados = pedidos.filter((pedido) => {
+        return pedido.numero.indexOf(numeroIngresado) !== -1;
+
+    })
+
+    console.log(encontrados)
